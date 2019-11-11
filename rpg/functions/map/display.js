@@ -13,10 +13,13 @@ const displayMap = (oldValueX, oldValueY, valueX, valueY, map, solarSystemData) 
         discoveredDot,
         currentPosition,
         undiscoveredDot,
+        oldPosition,
         mainShip,
         joinMap;
 
     randomSSIndex = () => {return Math.floor(Math.random() * solarSystemData.length)};
+
+
 
     joinMap = () => {
         for (let mapYIndex = 0; mapYIndex < map.length; mapYIndex++) {
@@ -25,16 +28,26 @@ const displayMap = (oldValueX, oldValueY, valueX, valueY, map, solarSystemData) 
         return joinedMapSections.join('');
     };
 
+
     joinedMapSections = []
+    mainShip = ' > '.yellow
     discoveredPlanet = ' O '.red
     undiscoveredPlanet = ' O '.green
     discoveredDot = ' . '.blue
     undiscoveredDot = ' . '
     currentPosition = map[valueY][valueX]
-    mainShip = ' > '.yellow
+    oldPosition = map[oldValueY][oldValueX]
+
+    
+
+
 
     if (oldValueX !== undefined && oldValueY !== undefined) {
 
+        if (oldPosition === mainShip && currentPosition !== oldPosition) {
+            map[oldValueY].splice(oldValueX, 1, discoveredDot)
+        }
+    
         if (currentPosition !== discoveredPlanet && currentPosition !== undiscoveredPlanet) {
             map[valueY].splice(valueX, 1, mainShip)
         }
@@ -51,7 +64,10 @@ const displayMap = (oldValueX, oldValueY, valueX, valueY, map, solarSystemData) 
                 ` [5] SAVE AND QUIT \n\n`
             ]
 
-            map[oldValueY].splice(oldValueX, 1, mainShip)
+            if (oldPosition !== discoveredPlanet) {
+                map[oldValueY].splice(oldValueX, 1, discoveredDot)
+            }
+
             solarSystemChoice = ask.keyIn(`WE ARE CURRENTLY APPROACHING THE ${ currentSolarSystem.star.star_name } SYSTEM...\n\n\n ${solarSystemOptions.join('')}`, { limit: '$<1-5>', hideEchoBack: true })
 
             switch(solarSystemChoice) {
@@ -78,15 +94,9 @@ const displayMap = (oldValueX, oldValueY, valueX, valueY, map, solarSystemData) 
                 case '5':
                     ask.keyIn('SAVE AND QUIT...', { hideEchoBack: true })
             }
-
             map[valueY].splice(valueX, 1, discoveredPlanet)
         }
-
-        if (map[oldValueY][oldValueX] === mainShip && currentPosition !== map[oldValueY][oldValueX]) {
-            map[oldValueY].splice(oldValueX, 1, discoveredDot)
-        }
     }
-    
     return joinMap()
 }
 

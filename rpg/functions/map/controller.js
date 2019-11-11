@@ -10,6 +10,8 @@ async function mapControls() {
     let min = 0;
     let valueX = 0;
     let valueY = 0;
+    oldValueX = 0;
+    oldValueY = 0;
     let map = createMap();
 
     let mapp = {
@@ -32,12 +34,12 @@ async function mapControls() {
 
     while (true) {
         clear()
-        
-        oldValueX = valueX;
-        oldValueY = valueY;
 
         console.log(`\n [w] = "UP"\n [a] = "LEFT"\n [d] = "RIGHT"\n [s] = "DOWN"\n [space] = "MORE OPTIONS"\n\n\n`)
         console.log(`${ displayMap(oldValueX, oldValueY, valueX, valueY, map, solarSystemArr) }`)
+
+        oldValueX = valueX;
+        oldValueY = valueY;
 
         key = ask.keyIn('', { hideEchoBack: true, mask: '', limit: 'wads ' });
 
