@@ -47,7 +47,7 @@ async function mapControls() {
         else if (key === 'a' && valueX > min) { valueX-- } 
         else if (key === 's' && valueY < max) { valueY++ } 
         else if (key === 'd' && valueX < max) { valueX++ }
-        else if (key === ' ') { ask.keyInYN('are you sure you want to quit?') }
+        else if (key === ' ') { ask.keyInYN('are you sure you want to quit?\n (Y/N)') }
         else { continue }
     }
 }

@@ -45,12 +45,13 @@ const displayMap = (oldValueX, oldValueY, valueX, valueY, map, solarSystemData) 
 
         if (currentPosition === undiscoveredPlanet) {
             clear()
-            currentSolarSystem = solarSystemData[randomSSIndex()]
+            
+            currentSolarSystem = solarSystemData.splice(randomSSIndex(), 1)
 
             solarSystemOptions = [
-                `[1] ENTER THE [ ${ currentSolarSystem.star.star_name } ] SYSTEM \n\n`,
-                ` [2] HACK THE ARCHIVE OF THE [ ${ currentSolarSystem.star.star_name } ] SYSTEM \n\n`,
-                ` [3] RETURN TO THE [ ${ currentSolarSystem.star.star_name } ] SYSTEM LATER \n\n`,
+                `[1] ENTER THE [ ${ currentSolarSystem[0].data.name } ] SYSTEM \n\n`,
+                ` [2] HACK THE ARCHIVE OF THE [ ${ currentSolarSystem[0].data.name } ] SYSTEM \n\n`,
+                ` [3] RETURN TO THE [ ${ currentSolarSystem[0].data.name } ] SYSTEM LATER \n\n`,
                 ` [4] CHECK THE STATUS OF YOUR SHIP \n\n`,
                 ` [5] SAVE AND QUIT \n\n`
             ]
@@ -59,18 +60,12 @@ const displayMap = (oldValueX, oldValueY, valueX, valueY, map, solarSystemData) 
                 map[oldValueY].splice(oldValueX, 1, discoveredDot)
             }
 
-            solarSystemChoice = ask.keyIn(`WE ARE CURRENTLY APPROACHING THE ${ currentSolarSystem.star.star_name } SYSTEM...\n\n\n ${solarSystemOptions.join('')}`, { limit: '$<1-5>', hideEchoBack: true })
+            solarSystemChoice = ask.keyIn(`WE ARE CURRENTLY APPROACHING THE ${ currentSolarSystem[0].data.name } SYSTEM...\n\n\n ${solarSystemOptions.join('')}`, { limit: '$<1-5>', hideEchoBack: true })
 
             switch(solarSystemChoice) {
                 case '1':
                     ask.keyIn('ENTERING THE SOLAR SYSTEM...', { hideEchoBack: true })
-                    // enterSolarSystem(currentSolarSystem, mainPlayerShip)
                     enterSolarSystem(currentSolarSystem)
-
-                    const newData = solarSystemData.filter(item => {
-                        return item !== currentSolarSystem
-                    })
-                    console.log(newData.length)
                     break;
                 case '2':
                     ask.keyIn('HACKING THE SOLAR SYSTEM...', { hideEchoBack: true })
