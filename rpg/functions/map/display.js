@@ -12,14 +12,11 @@ const displayMap = (oldValueX, oldValueY, valueX, valueY, map, solarSystemData) 
         randomSSIndex,
         discoveredDot,
         currentPosition,
-        undiscoveredDot,
         oldPosition,
         mainShip,
         joinMap;
 
     randomSSIndex = () => {return Math.floor(Math.random() * solarSystemData.length)};
-
-
 
     joinMap = () => {
         for (let mapYIndex = 0; mapYIndex < map.length; mapYIndex++) {
@@ -28,19 +25,13 @@ const displayMap = (oldValueX, oldValueY, valueX, valueY, map, solarSystemData) 
         return joinedMapSections.join('');
     };
 
-
     joinedMapSections = []
     mainShip = ' > '.yellow
     discoveredPlanet = ' O '.red
     undiscoveredPlanet = ' O '.green
     discoveredDot = ' . '.blue
-    undiscoveredDot = ' . '
     currentPosition = map[valueY][valueX]
     oldPosition = map[oldValueY][oldValueX]
-
-    
-
-
 
     if (oldValueX !== undefined && oldValueY !== undefined) {
 
