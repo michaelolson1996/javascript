@@ -15,7 +15,7 @@ const createMap = () => {
         if (planetPosition === ' . ') {
             map[mapYAxis].splice(mapXAxis, 1, ' O '.green)
         } else {
-            solarSystemPositions--
+            solarSystemPositions -= 1
         }
     }
     return map
