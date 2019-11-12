@@ -14,19 +14,19 @@ async function mapControls() {
     oldValueY = 0;
     let map = createMap();
 
-    let mapp = {
-        max: 19,
-        min: 0,
-        newValue: {
-            x: 0,
-            y: 0
-        },
-        oldValue: {
-            x: undefined,
-            y: undefined
-        },
-        create: createMap()
-    }
+    // let mapp = {
+    //     max: 19,
+    //     min: 0,
+    //     newValue: {
+    //         x: 0,
+    //         y: 0
+    //     },
+    //     oldValue: {
+    //         x: undefined,
+    //         y: undefined
+    //     },
+    //     create: createMap()
+    // }
 
     let solarSystemArr = await solarSystemGenerator().then(data => {
      return data
