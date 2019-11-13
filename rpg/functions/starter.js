@@ -1,5 +1,5 @@
-const CrewMember = require('../constructors/crewMember')
-const Ship = require('../constructors/ship')
+const CrewMember = require('../constructors/crew/crewMember')
+const Ship = require('../constructors/ships/ship')
 const shipImg = require('../images/ship').shipImg
 
 const generateFriendlyShip = (shipName, captainName) => {
@@ -16,4 +16,4 @@ const generateFriendlyShip = (shipName, captainName) => {
     return ship
 }
 
-module.exports = { generateFriendlyShip }
+module.exports =  generateFriendlyShip

@@ -1,5 +1,5 @@
-const RandShip = require('../constructors/ship')
-const CrewMember = require('../constructors/crewMember')
+const RandShip = require('./ship')
+const CrewMember = require('./crewMember')
 const faker = require('faker')
 
 const generateShipDetails = () => {
@@ -67,9 +67,5 @@ const getCrewOccupations = (enemyIndex, shipName) => {
 const generateShipInterior = (crewMembers, isAIOperated, isGood, shipName) => {
     console.log(crewMembers)
 }
-
-const generateShip = () => {
-
-} 
 
 module.exports = generateShipDetails

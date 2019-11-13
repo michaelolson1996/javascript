@@ -2,7 +2,7 @@ const ask = require('readline-sync');
 var clear = require('clear');
 const enterSolarSystem = require('../game/entersolarsystem')
 
-const displayMap = (oldValueX, oldValueY, valueX, valueY, map, solarSystemData) => {
+const displayMap = (oldValueX, oldValueY, valueX, valueY, map, solarSystemData, mainPlayer) => {
     let discoveredPlanet,
         joinedMapSections,
         undiscoveredPlanet,
@@ -49,7 +49,8 @@ const displayMap = (oldValueX, oldValueY, valueX, valueY, map, solarSystemData) 
             currentSolarSystem = solarSystemData.splice(randomSSIndex(), 1)
 
             solarSystemOptions = [
-                `[1] ENTER THE [ ${ currentSolarSystem[0].data.name } ] SYSTEM \n\n`,
+                `   WHAT WOULD YOU LIKE TO DO ${ mainPlayer.generalInfo.captain }? \n`,
+                ` [1] ENTER THE [ ${ currentSolarSystem[0].data.name } ] SYSTEM \n\n`,
                 ` [2] HACK THE ARCHIVE OF THE [ ${ currentSolarSystem[0].data.name } ] SYSTEM \n\n`,
                 ` [3] RETURN TO THE [ ${ currentSolarSystem[0].data.name } ] SYSTEM LATER \n\n`,
                 ` [4] CHECK THE STATUS OF YOUR SHIP \n\n`,
@@ -65,7 +66,7 @@ const displayMap = (oldValueX, oldValueY, valueX, valueY, map, solarSystemData) 
             switch(solarSystemChoice) {
                 case '1':
                     ask.keyIn('ENTERING THE SOLAR SYSTEM...', { hideEchoBack: true })
-                    enterSolarSystem(currentSolarSystem)
+                    enterSolarSystem(currentSolarSystem, mainPlayer)
                     break;
                 case '2':
                     ask.keyIn('HACKING THE SOLAR SYSTEM...', { hideEchoBack: true })
